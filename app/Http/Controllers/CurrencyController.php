@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Currency;
-use App\Http\Requests\StoreCurrencyRequest;
-use App\Http\Requests\UpdateCurrencyRequest;
+use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
 {
@@ -28,9 +27,14 @@ class CurrencyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCurrencyRequest $request)
+    public function store(Request $request)
     {
-        return view('currency.store');
+        $data = $request->validate([
+            'name'=> ['required','string'],
+            'rate'=> ['required','numeric', 'min:0'],
+        ]);
+        $currency = Currency::create($data);
+        return to_route('currency.index')->with('message','Currency created');
     }
 
     /**
@@ -38,7 +42,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        return view('currency.show', ['currencies'=>$currencies]);
+        return view('currency.show', ['currency'=>$currency]);
     }
 
     /**
@@ -46,15 +50,21 @@ class CurrencyController extends Controller
      */
     public function edit(Currency $currency)
     {
-        return view('currency.edit', ['currencies'=>$currencies]);
+        return view('currency.edit', ['currency'=>$currency]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCurrencyRequest $request, Currency $currency)
+    public function update(Request $request, Currency $currency)
     {
-        return view('currency.update');
+        $data = $request->validate([
+            'name'=> ['required','string'],
+            'rate'=> ['required','numeric', 'min:0'],
+
+        ]);
+        $currency->update($data);
+        return to_route('currency.index')->with('message','Currency up');
     }
 
     /**
@@ -62,6 +72,7 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        return view('currency.destroy');
+        $currency->delete();
+        return to_route('currency.index')->with('message','Currency deleted');
     }
 }

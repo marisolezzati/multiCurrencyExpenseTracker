@@ -1,7 +1,15 @@
 <x-layout>
     @foreach($currencies as $currency)
         <div>
-            1 {{$currency->name}} = {{$currency->rate}} dolar.
+        {{$currency->rate}} {{$currency->name}}=  1 dolar. 
+        <form action="{{ route('currency.destroy', $currency) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button>Delete</button>
+        </form>
+        <form action="{{ route('currency.edit', $currency) }}" method="GET">
+            <button>Edit</button>
+        </form>
         </div>
     @endforeach
 </x-layout>
