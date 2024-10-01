@@ -2,12 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Currency rate</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
-    <body class="antialiased">
-        {{$slot}}
+    <body>
+        <div class="content">
+            {{$slot}}
+        </div>
     </body>
 </html>
