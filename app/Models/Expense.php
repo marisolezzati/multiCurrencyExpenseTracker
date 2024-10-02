@@ -11,7 +11,7 @@ class Expense extends Model
 
     protected $fillable = ['description', 'rate', 'cost', 'currency_id'];
 
-    public function costInUSD(){
+    public function costInEuro(){
         return $this->cost/$this->rate;
     }
 

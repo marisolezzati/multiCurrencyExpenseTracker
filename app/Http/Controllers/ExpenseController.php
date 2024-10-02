@@ -24,7 +24,7 @@ class ExpenseController extends Controller
         $data = $request->validate([
             'description'=> ['required','string'],
             'cost'=> ['required','numeric', 'min:0'],
-            'currency_id'=> ['required','numeric'],
+            'currency_id'=> ['required','string'],
         ]);
         $data['rate'] = Currency::find($data['currency_id'])->rate;
         $expense = Expense::create($data);

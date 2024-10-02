@@ -22,7 +22,7 @@
                 <td>Cost</td>
                 <td>Original currency</td>
                 <td>Rate*</td>
-                <td>Cost in USD</td>
+                <td>Cost in EUR</td>
                 <td></td>
             </tr>
         </thead>
@@ -37,9 +37,9 @@
                 <td>{{$expense->currencyName()}}</td>
                 <td class="numericItem">{{$expense->rate}}</td>
                 <td class="numericItem">@php
-                    $costInUSD = $expense->costInUSD();
-                    $total += $costInUSD;
-                    echo(number_format($costInUSD, 2, '.', ','));
+                    $costInEuro = $expense->costInEuro();
+                    $total += $costInEuro;
+                    echo(number_format($costInEuro, 2, '.', ','));
                     @endphp              
                 </td> {{-- TODO set locale for decimal symbol --}}
                 <td>
@@ -53,7 +53,7 @@
         @endforeach
             <tr class="total">
                 <td colspan="4">Total</td>
-                <td>{{number_format($total, 2, '.', ',')}}</td>
+                <td class="numericItem">{{number_format($total, 2, '.', ',')}}</td>
             </tr>
         </tbody>
     </table>

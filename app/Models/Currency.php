@@ -9,5 +9,8 @@ class Currency extends Model
 {
     use HasFactory;
 
+    public $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = ['name', 'rate'];
 }

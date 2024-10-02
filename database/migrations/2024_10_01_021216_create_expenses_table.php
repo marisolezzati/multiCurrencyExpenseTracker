@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('description', 15);
             $table->float('cost');
-            $table->integer('currency_id'); 
+            $table->char('currency_id', 3); 
             $table->float('rate'); 
             $table->foreign('currency_id')->references('id')->on('currencies'); 
             $table->timestamps();

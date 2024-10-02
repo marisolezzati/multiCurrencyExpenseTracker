@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Currency;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,19 +20,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Currency::factory()->create([
-            'name' => 'dolar',
-            'rate' => 1,
-        ]);
-
-        Currency::factory()->create([
-            'name' => 'euro',
-            'rate' => 1.1,
-        ]);
-
-        Currency::factory()->create([
-            'name' => 'yen',
-            'rate' => 1.1,
-        ]);
     }
 }
