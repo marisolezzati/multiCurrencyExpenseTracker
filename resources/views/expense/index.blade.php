@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Expenses') }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                                     <option value="{{ $currency->id }}" {{ $currency->id == old('currency_id') ? 'selected' : '' }}>{{ $currency->name }}</option>
                                 @endforeach
                             </select>
-                            <button>Submit</button>
+                            <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </form>
                     </div>
                     Expense list:
@@ -56,7 +56,7 @@
                                     <form action="{{ route('expense.destroy', $expense) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button>Delete</button>
+                                        <x-primary-button>{{ __('Delete') }}</x-primary-button>
                                     </form>
                                 </td>
                             </tr>

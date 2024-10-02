@@ -38,6 +38,14 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('expense.index')">
+                            {{ __('Expenses') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('currency.index')">
+                            {{ __('Rates') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
