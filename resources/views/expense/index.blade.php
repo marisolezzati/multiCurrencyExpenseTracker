@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="new"> 
-                        Add new expense rate:
+                        Add new expense:
                         <form action="{{ route('expense.store') }}" method="POST" >
                             @csrf
                             Description: <input name="description">
@@ -49,7 +49,7 @@
                                 <td class="numericItem">@php
                                     $costInEuro = $expense->costInEuro();
                                     $total += $costInEuro;
-                                    echo(number_format($costInEuro, 2, '.', ','));
+                                    echo(number_format($costInEuro, auth()->user()->precision, '.', ','));
                                     @endphp              
                                 </td> {{-- TODO set locale for decimal symbol --}}
                                 <td>

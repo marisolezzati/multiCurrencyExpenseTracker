@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Currency;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $currencies = Currency::orderBy('name')->get();
         return view('profile.edit', [
             'user' => $request->user(),
+            'currencies' => $currencies,
         ]);
     }
 
@@ -31,6 +34,9 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+
+        $request->user()->base_currency = $request->base_currency;
+        $request->user()->precision = $request->precision;
 
         $request->user()->save();
 

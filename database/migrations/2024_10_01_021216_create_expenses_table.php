@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('currency_id', 3); 
             $table->float('rate'); 
             $table->foreign('currency_id')->references('id')->on('currencies'); 
+            $table->foreignId('user_id')->constrained('users'); 
             $table->timestamps();
         });
     }

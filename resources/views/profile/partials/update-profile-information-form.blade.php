@@ -47,6 +47,22 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="base_currency" :value="__('Base currency')" />
+            <select name="base_currency" required  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                @foreach ($currencies as $currency)
+                    <option value="{{ $currency->id }}" {{ $currency->id == $user->base_currency ? 'selected' : '' }}>{{ $currency->id }} - {{ $currency->name }}</option>
+                @endforeach
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('base_currency')" />
+        </div>
+
+        <div>
+            <x-input-label for="precision" :value="__('Decimal places')" />
+            <input type="number" id="precision" name="precision" step="1" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" value="{{ $user->precision }}" required autofocus autocomplete="precision" />
+            <x-input-error class="mt-2" :messages="$errors->get('precision')" />
+        </div>
+        
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

@@ -13,7 +13,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.index', ['expenses'=>Expense::all(), 'currencies' => Currency::orderBy('name')->get()]);
+        $currencies = Currency::orderBy('name')->get();
+        $expenses = Expense::query()->where('user_id', auth()->user()->id)->get();
+        return view('expense.index', ['expenses'=>$expenses, 'currencies' => $currencies]);
     }
 
     /**
@@ -21,43 +23,16 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        var_dump($request->user()->id);
         $data = $request->validate([
             'description'=> ['required','string'],
             'cost'=> ['required','numeric', 'min:0'],
             'currency_id'=> ['required','string'],
         ]);
+        $data['user_id'] = $request->user()->id;
         $data['rate'] = Currency::find($data['currency_id'])->rate;
+        var_dump($data);
         $expense = Expense::create($data);
-        return to_route('expense.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(expense $expense)
-    {
-        return view('expense.show', ['expense'=>$expense]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(expense $expense)
-    {
-        return view('expense.edit', ['expense'=>$expense]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, expense $expense)
-    {
-        $data = $request->validate([
-            'description'=> ['required','string'],
-            'cost'=> ['required','numeric', 'min:0'],
-            'currency_id'=> ['required','numeric'],
-        ]);
-        $expense->update($data);
         return to_route('expense.index');
     }
 

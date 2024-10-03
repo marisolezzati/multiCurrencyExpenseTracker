@@ -9,7 +9,7 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'rate', 'cost', 'currency_id'];
+    protected $fillable = ['description', 'rate', 'cost', 'currency_id', 'user_id'];
 
     public function costInEuro(){
         return $this->cost/$this->rate;

@@ -34,8 +34,16 @@
                         </form>
                     </section>
                     </div>
-                    <div class="list">
-                    <section>
+                    <section class='subsection'>
+                    <div class="flex items-center gap-4">
+                        <form action="{{ route('currency.create') }}" method="GET" >
+                            @csrf
+                            <x-primary-button>{{ __('Refresh rates') }}</x-primary-button>
+                        </form>
+                    </div>
+                    </section>
+                    <div>
+                    <section class='subsection'>
                         Currency list:
                         <table class="list">
                             <thead>
