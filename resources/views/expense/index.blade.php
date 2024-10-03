@@ -32,7 +32,7 @@
                                 <td>Cost</td>
                                 <td>Original currency</td>
                                 <td>Rate*</td>
-                                <td>Cost in EUR</td>
+                                <td>Cost in {{ auth()->user()->base_currency }}</td>
                                 <td></td>
                             </tr>
                         </thead>
