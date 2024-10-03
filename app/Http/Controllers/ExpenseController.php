@@ -13,7 +13,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.index', ['expenses'=>Expense::all(), 'currencies' => Currency::all()]);
+        return view('expense.index', ['expenses'=>Expense::all(), 'currencies' => Currency::orderBy('name')->get()]);
     }
 
     /**

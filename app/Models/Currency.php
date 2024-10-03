@@ -12,5 +12,5 @@ class Currency extends Model
     public $keyType = 'string';
     public $incrementing = false;
 
-    protected $fillable = ['name', 'rate'];
+    protected $fillable = ['name', 'country', 'rate'];
 }

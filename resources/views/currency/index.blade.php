@@ -13,7 +13,7 @@
                     Add new currency rate:
                         <form action="{{ route('currency.store') }}" method="POST" >
                             @csrf
-                            1 EUR = <input name="rate" placeholder="Rate i.e:(0.9)"> <input name="name" placeholder="Currency name i.e:(Euro)">
+                            1 EUR = <input name="rate" placeholder="Rate i.e:(0.9)"> <input name="name" placeholder="Currency name i.e:(EUR)">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </form>
                     </div>
@@ -23,14 +23,19 @@
                             <x-primary-button>{{ __('Refresh rates') }}</x-primary-button>
                         </form>
                     </div>
-                    <div class="list">
                     Currency list:
+                    <table class="list">
+                        <tbody>
+                        @php
+                            $total=0;        
+                        @endphp
                         @foreach($currencies as $currency)
-                            <div class="item">
-                                {{$currency->rate}} {{$currency->name}} =  1 EUR.
-                            </div>
+                            <tr class="item">
+                                <td>{{$currency->rate}} {{$currency->id}} ({{$currency->name}}) =  1 EUR.</td>
+                            </tr>
                         @endforeach
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

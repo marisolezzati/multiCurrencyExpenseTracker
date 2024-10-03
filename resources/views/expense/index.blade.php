@@ -18,7 +18,7 @@
                             Currency <select name="currency_id" required>
                                 <option value="">-</option>
                                 @foreach ($currencies as $currency)
-                                    <option value="{{ $currency->id }}" {{ $currency->id == old('currency_id') ? 'selected' : '' }}>{{ $currency->name }}</option>
+                                    <option value="{{ $currency->id }}" {{ $currency->id == old('currency_id') ? 'selected' : '' }}>{{ $currency->id }} - {{ $currency->name }}</option>
                                 @endforeach
                             </select>
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
