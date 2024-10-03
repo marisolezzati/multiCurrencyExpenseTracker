@@ -47,9 +47,9 @@
                                 <td>{{$expense->currencyName()}}</td>
                                 <td class="numericItem">{{$expense->rate}}</td>
                                 <td class="numericItem">@php
-                                    $costInEuro = $expense->costInEuro();
-                                    $total += $costInEuro;
-                                    echo(number_format($costInEuro, auth()->user()->precision, '.', ','));
+                                    $costInBase = $expense->costInBase();
+                                    $total += $costInBase;
+                                    echo(number_format($costInBase, auth()->user()->precision));
                                     @endphp              
                                 </td> {{-- TODO set locale for decimal symbol --}}
                                 <td>
@@ -63,7 +63,7 @@
                         @endforeach
                             <tr class="total">
                                 <td colspan="4">Total</td>
-                                <td class="numericItem">{{number_format($total, 2, '.', ',')}}</td>
+                                <td class="numericItem">{{number_format($total, auth()->user()->precision)}}</td>
                             </tr>
                         </tbody>
                     </table>
