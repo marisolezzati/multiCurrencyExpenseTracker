@@ -22,6 +22,7 @@ class CurrencyController extends Controller
     {
         $data = $request->validate([
             'name'=> ['required','string'],
+            'country'=> ['required','string'],
             'rate'=> ['required','numeric', 'min:0'],
         ]);
         $currency = Currency::create($data);

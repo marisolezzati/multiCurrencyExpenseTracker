@@ -15,6 +15,7 @@ button:hover {
 }
 
 .list {
+  padding-top: 40px;
   border-collapse: collapse;
   width: 100%;
 }

@@ -13,7 +13,7 @@
                         Add new expense rate:
                         <form action="{{ route('expense.store') }}" method="POST" >
                             @csrf
-                            Description: <input name="description" placeholder="Rate i.e:(0.9)">
+                            Description: <input name="description">
                             Amount: <input name="cost"/> 
                             Currency <select name="currency_id" required>
                                 <option value="">-</option>

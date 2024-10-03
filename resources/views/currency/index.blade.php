@@ -10,32 +10,54 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">            
                     <div class="flex items-center gap-4">
-                    Add new currency rate:
-                        <form action="{{ route('currency.store') }}" method="POST" >
+                    <section>
+                        <header>
+                            <h2 class="text-lg font-medium text-gray-900">
+                                Add new currency:
+                            </h2>
+                        </header>
+                        <form action="{{ route('currency.store') }}" method="POST" class="mt-6 space-y-6">
                             @csrf
-                            1 EUR = <input name="rate" placeholder="Rate i.e:(0.9)"> <input name="name" placeholder="Currency name i.e:(EUR)">
+                            <div>
+                                <label for="name" class="block font-medium text-sm text-gray-700">Name</label>
+                                <input name="name" type="text" placeholder="Euro" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            </div>
+                            <div>
+                                <label for="id" class="block font-medium text-sm text-gray-700">ISO code</label>
+                                <input name="id" type="text" placeholder="EUR" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            </div>
+                            <div>
+                                <label for="rate" class="block font-medium text-sm text-gray-700">Rate</label>
+                                <input name="rate" type="text" placeholder="0.9" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            </div>
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </form>
+                    </section>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <form action="{{ route('currency.create') }}" method="GET" >
-                            @csrf
-                            <x-primary-button>{{ __('Refresh rates') }}</x-primary-button>
-                        </form>
+                    <div class="list">
+                    <section>
+                        Currency list:
+                        <table class="list">
+                            <thead>
+                                <tr class="item">
+                                    <td>Currency name</td>
+                                    <td class="numericItem">1 euro equas to</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                                $total=0;        
+                            @endphp
+                            @foreach($currencies as $currency)
+                                <tr class="item">
+                                    <td>{{$currency->name}} </td>
+                                    <td class="numericItem">{{$currency->rate}} {{$currency->id}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </section>
                     </div>
-                    Currency list:
-                    <table class="list">
-                        <tbody>
-                        @php
-                            $total=0;        
-                        @endphp
-                        @foreach($currencies as $currency)
-                            <tr class="item">
-                                <td>{{$currency->rate}} {{$currency->id}} ({{$currency->name}}) =  1 EUR.</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
