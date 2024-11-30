@@ -31,7 +31,6 @@ class ExpenseController extends Controller
         ]);
         $data['user_id'] = $request->user()->id;
         $data['rate'] = Currency::find($data['currency_id'])->rate;
-        var_dump($data);
         $expense = Expense::create($data);
         return to_route('expense.index');
     }
