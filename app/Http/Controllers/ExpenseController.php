@@ -23,7 +23,6 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->user()->id);
         $data = $request->validate([
             'description'=> ['required','string'],
             'cost'=> ['required','numeric', 'min:0'],
